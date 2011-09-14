@@ -10,7 +10,7 @@ module Kernel
     
     count.times do |i|
       fork do
-        Resque.redis.connect_to_server if Object.const_defined?('Resque')
+        Resque.redis = Redis.new
         yield(i) if block_given?
         exit!
       end
